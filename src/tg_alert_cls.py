@@ -3,6 +3,8 @@ import time
 
 import requests
 
+from constants import B24REPORT_BOT, B24REPORT_CHAT_ID, B24REPORT_THREADS
+
 
 class TelegramAlert:
     def __init__(self, token, chat_id, threads=None):
@@ -115,11 +117,7 @@ class TelegramAlert:
 
 # Пример использования
 if __name__ == "__main__":
-    TOKEN = "7913124625:AAFKPv_Wl6xMngQMaEVma_i7-bv-Or5Bsvo"
-    CHAT_ID = -1002286432818
-    THREADS = {"общая": None, "Раскрои ФРС": 2, "ошибки": 41}
-
-    bot = TelegramAlert(TOKEN, CHAT_ID, THREADS)
+    bot = TelegramAlert(B24REPORT_BOT, B24REPORT_CHAT_ID, B24REPORT_THREADS)
     # bot.send_message("Привет, это сообщение для всех!")  # Отправка в общую тему
     bot.send_message("rwwrwrg", thread_name="Раскрои ФРС")  # В тему "обсуждение"
     # bot.send_message("Сообщение об ошибке", thread_name="ошибки")  # В тему "ошибки"

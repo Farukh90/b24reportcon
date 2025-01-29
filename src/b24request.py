@@ -2,17 +2,14 @@ from datetime import datetime, timedelta
 
 import requests
 
+from constants import TASK_DETAIL_URL
+
 # Группы с их ID
 groups = {
     138: "Внесение изменений в изделие",
     128: "ЗАМЕРЫ",
     82: "Заявки на нестандарт",
 }
-
-# URL для получения задач
-task_detail_url = (
-    "https://simplepro.bitrix24.ru/rest/43/7pwrbykl4qx2gmk7/tasks.task.list.json"
-)
 
 
 def get_previous_month_date_range():
@@ -51,7 +48,7 @@ def fetch_task_statistics_report(start_date_api, end_date_api):
         }
 
         try:
-            response = requests.post(task_detail_url, json=params)
+            response = requests.post(TASK_DETAIL_URL, json=params)
             response.raise_for_status()
             data = response.json()
         except requests.exceptions.RequestException as e:
