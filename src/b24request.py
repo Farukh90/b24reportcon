@@ -110,10 +110,13 @@ def generate_html_report(results):
             continue
 
         report_str += "<pre>\n"
-        report_str += f"{'Ф.И.О':<22} | {'Закрыто'}\n"
+        report_str += f"{'И.Ф':<22} | {'Закрыто'}\n"
         report_str += f"{'-' * 22}-|{'-' * 7}\n"
 
-        for responsible_name, count in responsible_stats.items():
+        # 🔹 Сортируем список по убыванию количества закрытых задач
+        sorted_responsibles = sorted(responsible_stats.items(), key=lambda x: x[1], reverse=True)
+
+        for responsible_name, count in sorted_responsibles:
             report_str += f"{responsible_name:<22} | {count}\n"
 
         report_str += "</pre>\n"  # Закрываем <pre>
